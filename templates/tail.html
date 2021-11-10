@@ -1,0 +1,17 @@
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="{{ url_for('static',filename='js/bootstrap.min.js')}}"></script>
+    <script src="{{ url_for('static',filename='js/tools.js')}}?{{time}}"></script>
+    <script>
+		$('#sentedit_input').keydown(function (e) {
+		  if (e.ctrlKey && e.keyCode == 13) {
+			// Ctrl-Enter pressed
+			request_sentedit()
+		  }
+		});
+	</script>
+  </body>
+</html>

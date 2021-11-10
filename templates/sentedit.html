@@ -1,0 +1,65 @@
+<div class="row">
+	<div class="col-md-6">
+	  <!-- start card -->
+	  <div class="card mb-4 shadow-sm">
+        <div class="card-header">例句編輯工具</div>
+		<div class="card-body">
+			 <input id="wordseg" type="checkbox" name="wordseg" value="true" checked="checked">
+			 <label for="wordseg">自動斷詞</label>
+			 &nbsp;
+			 &nbsp;
+			 &nbsp;
+			 &nbsp;
+			 <input id="wordtab2" type="radio" name="wordtab" value="naer" checked="checked">
+			 <label for="wordseg">國教院詞語分級表</label>
+			 <!--input id="wordtab1" type="radio" name="wordtab" value="hw8000"-->
+			 <!--label for="wordseg">華語八千詞</label-->
+			<textarea id='sentedit_input' rows="22" style="width:100%" placeholder="請輸入句子，例如：
+下課以後，我們一起去吃飯。"></textarea><br>
+			<input type='button' value='送出' onClick='request_sentedit()'>
+		</div>
+	  </div>
+	  <!-- end card -->
+
+	</div>
+	<div class="col-md-6">
+			<div class="container">
+			  <div class="card" style="min-height: 700px;">
+			  <div class="card-body">
+			  <!-- start panel -->
+			  <ul class="nav nav-tabs" id="myTab" role="tablist">
+				<li class="nav-item" role="presentation">
+					<a class="nav-link active" id="p1-tab" data-toggle="tab" href="#p1" role="tab" aria-controls="p1" aria-selected="true">分級標記</a>
+				</li>
+
+				<li class="nav-item" role="presentation">
+					<a class="nav-link " id="p2-tab" href="#p2" data-toggle="tab" role="tab" aria-controls="p2" aria-controls="true">詞彙等級分布</a>
+				</li>
+				<li class="nav-item" role="presentation">
+					<a class="nav-link " id="p3-tab" href="#p3" data-toggle="tab" role="tab" aria-controls="p3" aria-controls="true">詞表</a>
+				</li>
+				<li class="nav-item" role="presentation">
+					<a class="nav-link " id="p4-tab" href="#p4" data-toggle="tab" role="tab" aria-controls="p4" aria-controls="true">關聯詞選擇器</a>
+				</li>
+			  </ul>
+			  <div class="tab-content">
+				<div class="tab-pane fade show active" id="p1" role="tabpanel" aria-labelledby="p1-tab">
+				  <div id='sentedit_tag'></div>
+				</div>
+
+				<div class="tab-pane fade show" id="p2" role="tabpanel" aria-labelledby="p2-tab">
+				  <div id="chart_div"></div>
+				</div>
+				<div class="tab-pane fade show" id="p3" role="tabpanel" aria-labelledby="p3-tab">
+				  <div id='sentedit_word_list'></div>
+				</div>
+				<div class="tab-pane fade show" id="p4" role="tabpanel" aria-labelledby="p4-tab">
+				  <div id='similar_word_selector'></div>
+				</div>
+			  </div>
+			  <!-- end panel -->
+			</div><!-- card body -->
+			</div><!-- card -->
+			</div><!-- container-->
+	</div>
+</div>

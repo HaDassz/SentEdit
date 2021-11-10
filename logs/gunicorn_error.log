@@ -1,0 +1,7 @@
+[2021-06-29 14:14:17 +0000] [29167] [INFO] Starting gunicorn 19.4.5
+[2021-06-29 14:14:17 +0000] [29167] [INFO] Listening at: http://0.0.0.0:6872 (29167)
+[2021-06-29 14:14:17 +0000] [29167] [INFO] Using worker: sync
+[2021-06-29 14:14:18 +0000] [29173] [INFO] Booting worker with pid: 29173
+[2021-06-29 14:41:54 +0000] [29167] [INFO] Handling signal: term
+[2021-06-29 14:41:54 +0000] [29173] [INFO] Worker exiting (pid: 29173)
+[2021-06-29 14:41:54 +0000] [29167] [INFO] Shutting down: Master
