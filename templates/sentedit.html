@@ -1,65 +1,129 @@
 <div class="row">
-	<div class="col-md-6">
-	  <!-- start card -->
-	  <div class="card mb-4 shadow-sm">
-        <div class="card-header">例句編輯工具</div>
-		<div class="card-body">
-			 <input id="wordseg" type="checkbox" name="wordseg" value="true" checked="checked">
-			 <label for="wordseg">自動斷詞</label>
-			 &nbsp;
-			 &nbsp;
-			 &nbsp;
-			 &nbsp;
-			 <input id="wordtab2" type="radio" name="wordtab" value="naer" checked="checked">
-			 <label for="wordseg">國教院詞語分級表</label>
-			 <!--input id="wordtab1" type="radio" name="wordtab" value="hw8000"-->
-			 <!--label for="wordseg">華語八千詞</label-->
-			<textarea id='sentedit_input' rows="22" style="width:100%" placeholder="請輸入句子，例如：
+  <div class="col-sm-2">
+    <!-- 語料庫選擇card -->
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">選擇語料庫</div>
+      <div class="card-body">
+        <input type="radio" name="corpus" id="corpusYL_V1" value="YL_V1" required checked="checked" />
+        <label for="corpusYL_V1">遠流語料</label>
+        <br>
+        <input type="radio" name="corpus" id="corpusCP_V1" value="CP_V1" required />
+        <label for="corpusCP_V1">中國時報</label>
+        <br>
+        <input type="radio" name="corpus" id="corpusMDN" value="MDN" required />
+        <label for="corpusMDN">國語日報</label>
+        <br>
+        <input type="radio" name="corpus" id="corpusSBCV1" value="SBCV1" required />
+        <label for="corpusSBCV1">平衡語料庫</label>
+        <br>
+        <input type="radio" name="corpus" id="corpus_cna" value="cna" required />
+        <label for="corpus_cna">Chinese Giga Words</label>
+      </div>
+    </div>
+
+    <!-- 等級限制選擇card -->
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">查找限定等級的關聯詞</div>
+      <div class="card-body">
+        <input type="radio" name="limit-word-level" id="word-level-inf" value="inf" required checked="checked" />
+        <label for="word-level-inf">不限制</label>
+        <br>
+        <input type="radio" name="limit-word-level" id="word-level-7" value="7" required />
+        <label for="word-level-7">查7級(含)以下詞</label>
+        <br>
+        <input type="radio" name="limit-word-level" id="word-level-6" value="6" required />
+        <label for="word-level-6">查6級(含)以下詞</label>
+        <br>
+        <input type="radio" name="limit-word-level" id="word-level-5" value="5" required />
+        <label for="word-level-5">查5級(含)以下詞</label>
+        <br>
+        <input type="radio" name="limit-word-level" id="word-level-4" value="4" required />
+        <label for="word-level-4">查4級(含)以下詞</label>
+        <br>
+        <input type="radio" name="limit-word-level" id="word-level-3" value="3" required />
+        <label for="word-level-3">查3級(含)以下詞</label>
+        <br>
+        <input type="radio" name="limit-word-level" id="word-level-2" value="2" required />
+        <label for="word-level-2">查2級(含)以下詞</label>
+        <br>
+        <input type="radio" name="limit-word-level" id="word-level-1" value="1" required />
+        <label for="word-level-1">查1級詞</label>
+      </div>
+    </div>
+
+    <div class="panel-heading">
+      <label for="topn"><h6>關聯詞最大輸出詞數：</h6></label>
+      <input type="text" size="4" id="topn" value="{{ topn }}" name="topn">
+    </div>
+  
+  </div>
+    
+
+  <div class="col-md-5">
+    <!-- start card -->
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">例句編輯工具</div>
+      <div class="card-body">
+        <input id="wordseg" type="checkbox" name="wordseg" value="true" checked="checked">
+        <label for="wordseg">自動斷詞</label>
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        <input id="wordtab2" type="radio" name="wordtab" value="naer" checked="checked">
+        <label for="wordseg">國教院詞語分級表</label>
+        <!--input id="wordtab1" type="radio" name="wordtab" value="hw8000"-->
+        <!--label for="wordseg">華語八千詞</label-->
+        <textarea id='sentedit_input' rows="22" style="width:100%" placeholder="請輸入句子，例如：
 下課以後，我們一起去吃飯。"></textarea><br>
-			<input type='button' value='送出' onClick='request_sentedit()'>
-		</div>
-	  </div>
-	  <!-- end card -->
+        <input type='button' value='送出' onClick='request_sentedit()'>
+      </div>
+    </div>
+    <!-- end card -->
 
-	</div>
-	<div class="col-md-6">
-			<div class="container">
-			  <div class="card" style="min-height: 700px;">
-			  <div class="card-body">
-			  <!-- start panel -->
-			  <ul class="nav nav-tabs" id="myTab" role="tablist">
-				<li class="nav-item" role="presentation">
-					<a class="nav-link active" id="p1-tab" data-toggle="tab" href="#p1" role="tab" aria-controls="p1" aria-selected="true">分級標記</a>
-				</li>
+  </div>
+  <div class="col-md-5">
+    <div class="container">
+      <div class="card" style="min-height: 700px;">
+        <div class="card-body">
+          <!-- start panel -->
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a class="nav-link active" id="p1-tab" data-toggle="tab" href="#p1" role="tab" aria-controls="p1"
+                aria-selected="true">分級標記</a>
+            </li>
 
-				<li class="nav-item" role="presentation">
-					<a class="nav-link " id="p2-tab" href="#p2" data-toggle="tab" role="tab" aria-controls="p2" aria-controls="true">詞彙等級分布</a>
-				</li>
-				<li class="nav-item" role="presentation">
-					<a class="nav-link " id="p3-tab" href="#p3" data-toggle="tab" role="tab" aria-controls="p3" aria-controls="true">詞表</a>
-				</li>
-				<li class="nav-item" role="presentation">
-					<a class="nav-link " id="p4-tab" href="#p4" data-toggle="tab" role="tab" aria-controls="p4" aria-controls="true">關聯詞選擇器</a>
-				</li>
-			  </ul>
-			  <div class="tab-content">
-				<div class="tab-pane fade show active" id="p1" role="tabpanel" aria-labelledby="p1-tab">
-				  <div id='sentedit_tag'></div>
-				</div>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link " id="p2-tab" href="#p2" data-toggle="tab" role="tab" aria-controls="p2"
+                aria-controls="true">詞彙等級分布</a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link " id="p3-tab" href="#p3" data-toggle="tab" role="tab" aria-controls="p3"
+                aria-controls="true">詞表</a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link " id="p4-tab" href="#p4" data-toggle="tab" role="tab" aria-controls="p4"
+                aria-controls="true">關聯詞選擇器</a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane fade show active" id="p1" role="tabpanel" aria-labelledby="p1-tab">
+              <div id='sentedit_tag'></div>
+            </div>
 
-				<div class="tab-pane fade show" id="p2" role="tabpanel" aria-labelledby="p2-tab">
-				  <div id="chart_div"></div>
-				</div>
-				<div class="tab-pane fade show" id="p3" role="tabpanel" aria-labelledby="p3-tab">
-				  <div id='sentedit_word_list'></div>
-				</div>
-				<div class="tab-pane fade show" id="p4" role="tabpanel" aria-labelledby="p4-tab">
-				  <div id='similar_word_selector'></div>
-				</div>
-			  </div>
-			  <!-- end panel -->
-			</div><!-- card body -->
-			</div><!-- card -->
-			</div><!-- container-->
-	</div>
+            <div class="tab-pane fade show" id="p2" role="tabpanel" aria-labelledby="p2-tab">
+              <div id="chart_div"></div>
+            </div>
+            <div class="tab-pane fade show" id="p3" role="tabpanel" aria-labelledby="p3-tab">
+              <div id='sentedit_word_list'></div>
+            </div>
+            <div class="tab-pane fade show" id="p4" role="tabpanel" aria-labelledby="p4-tab">
+              <div id='similar_word_selector'></div>
+            </div>
+          </div>
+          <!-- end panel -->
+        </div><!-- card body -->
+      </div><!-- card -->
+    </div><!-- container-->
+  </div>
 </div>

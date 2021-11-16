@@ -35,6 +35,8 @@ function collect_sentedit()
 	data.text=$('#sentedit_input').val();
 	data.wordseg=$("#wordseg").prop("checked");
 	data.wordtab=$('input[name=wordtab]:checked').val();
+    data.corpus=$('input[name=corpus]:checked').val();
+    data.limitWordLv=$('input[name=limit-word-level]:checked').val();
     return data;
 }
 

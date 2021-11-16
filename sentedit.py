@@ -42,23 +42,7 @@ class WordLevelTagger:
             L.append((k, v['name']))
         return L
 
-    def seg_by_naerSeg(self, sentence):
-        """傳POST請求到國教院分詞系統再取得分詞後字串
-
-        :param sentence: [需要分詞的字串]
-        :type sentence: [str]
-        :return res_lst: [分詞完各個詞語形成list]
-        """
-        json_str = json.dumps({"RawText": sentence, "withPOS": "without"})
-        headers = {'user-agent': 'Mozilla/5.0'}
-        r = requests.post(
-            url="https://coct.naer.edu.tw/Segmentor/Func/getSegResult/", data=json_str, headers=headers)
-        seg_lst = json.loads(r.text)["result"]
-        res_lst = [word_POS[0] for word_POS in seg_lst]
-        # seg_str = " ".join(res_lst)
-        return res_lst
-
-    def tag(self, table_id, text, wordseg):
+    def tag(self, table_id, text, wordseg, corpus, limitWordLv):
         level_stats = defaultdict(int)
         table_name = self.WordTables[table_id]['name']
         level_info = self.WordTables[table_id]['level_info']
@@ -81,6 +65,7 @@ class WordLevelTagger:
             for sent in re.split('[\r\n]', text):
                 sentL.append(re.split('[ \t]+', sent))
 
+        # 分級標記
         L = []
         for no, x in enumerate(level_info, 1):
             L.append(u"""<table class="word"><tr><td>%s</td></tr><tr><td class="level_%s"></td></tr><tr><td>%s</td></tr></table>""" % (x, no, no))
@@ -101,6 +86,7 @@ class WordLevelTagger:
             # wordL=re.split('[ \t]+',sent)
             outL = []
             for word in wordL:
+                # 分級標記
                 word_listT[word] += 1
                 if word in T:
                     levelL = []
@@ -131,8 +117,12 @@ class WordLevelTagger:
                             </table>""" % (word)
                     level_stats['X'] += 1  # 以最低的級去計算
                 outL.append(out)
+
+
+
             out_text.append(u"&nbsp;&nbsp;".join(outL))
             # out_text.append(string.join(outL, u"&nbsp;&nbsp;"))
+        # 詞表
         word_list = list(word_listT.items())
         word_list.sort(key=lambda x: x[1], reverse=True)
         word_list_out = u"""<table class="table table-sm table-hover">
@@ -169,6 +159,7 @@ class WordLevelTagger:
                 word_list_out += u"</tr>\n"
         word_list_out += u"""</tbody>
 </table>"""
+
         output = {
             # 'output': string.join(out_text, u"<br>"),
             'output': u"<br>".join(out_text),

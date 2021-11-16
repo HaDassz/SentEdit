@@ -45,3 +45,13 @@ table.word{
 #sentedit_input{
 	font-size: 16px;
 }
+
+.panel-default>.panel-heading {
+    color: #333;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+}
+
+.panel-default {
+    border-color: #ddd;
+}
