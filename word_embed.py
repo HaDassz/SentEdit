@@ -17,7 +17,7 @@ config_path = os.path.abspath(os.path.dirname(__file__))
 patt = re.compile(NOT_PUNCTUATION)
 # patt_punct = re.compile(PUNCTUATION)
 
-with open(os.path.join(config_path, 'data', '國教院詞語分級表.json'), encoding="utf-8") as fin:
+with open(os.path.join(config_path, 'sentedit', '國教院詞語分級表.json'), encoding="utf-8") as fin:
     level_data = json.loads(fin.read())
 
 

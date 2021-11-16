@@ -8,7 +8,7 @@ import re
 from Segmentor import *
 from collections import OrderedDict, defaultdict
 import gensim
-from word_embed import select_model, find_most_n_similar
+from word_embed import select_model, find_most_n_similar, judge_word_level, stringfy_word_level
 
 config_path = os.path.abspath(os.path.dirname(__file__))
 
@@ -51,8 +51,6 @@ class WordLevelTagger:
         level_info = self.WordTables[table_id]['level_info']
         word_listT = defaultdict(int)
         embed_model = select_model(corpus)
-        #TODO: 110/11/16中午至此，續寫關聯詞邏輯部分
-
         T = self.WordTables[table_id]['dict']
         # print json.dumps(T,ensure_ascii=False,indent=4).encode("UTF-8")
         if wordseg:
@@ -91,7 +89,9 @@ class WordLevelTagger:
         for wordL in sentL:
             # wordL=re.split('[ \t]+',sent)
             outL = []
+            print("wordL：", wordL)
             for word in wordL:
+                print("word:", word)
                 # 分級標記
                 word_listT[word] += 1
                 if word in T:
@@ -123,7 +123,9 @@ class WordLevelTagger:
                             </table>""" % (word)
                     level_stats['X'] += 1  # 以最低的級去計算
                 outL.append(out)
-
+                #TODO: 110/11/16中午至此，續寫關聯詞邏輯部分
+                #* 語義場關聯詞
+                
 
 
             out_text.append(u"&nbsp;&nbsp;".join(outL))
