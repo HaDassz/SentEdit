@@ -1,13 +1,16 @@
 #!/usr/bin/python
 # -*- encoding: UTF-8 -*-
 
+import os
 import json
 import re
-import string
+# import string
 from Segmentor import *
 from collections import OrderedDict, defaultdict
-import requests
+import gensim
+from word_embed import select_model, find_most_n_similar
 
+config_path = os.path.abspath(os.path.dirname(__file__))
 
 class WordLevelTagger:
     def __init__(self):
@@ -42,11 +45,14 @@ class WordLevelTagger:
             L.append((k, v['name']))
         return L
 
-    def tag(self, table_id, text, wordseg, corpus, limitWordLv):
+    def tag(self, table_id, text, wordseg, corpus, limitWordLv, topn):
         level_stats = defaultdict(int)
         table_name = self.WordTables[table_id]['name']
         level_info = self.WordTables[table_id]['level_info']
         word_listT = defaultdict(int)
+        embed_model = select_model(corpus)
+        #TODO: 110/11/16中午至此，續寫關聯詞邏輯部分
+
         T = self.WordTables[table_id]['dict']
         # print json.dumps(T,ensure_ascii=False,indent=4).encode("UTF-8")
         if wordseg:

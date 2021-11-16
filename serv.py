@@ -35,7 +35,9 @@ def SentEdit():
         wordtab=request.json.get('wordtab','naer')
         corpus = request.json.get('corpus', 'MDN')
         limitWordLv = request.json.get('limitWordLv', 'inf')
-        ret=wltagger.tag(wordtab, text, wordseg, corpus, limitWordLv)
+        topn = int(re.sub('\D', '', request.json.get('topn', 10))) if (
+            re.sub('\D', '', request.json.get('topn')) != '') else 10
+        ret=wltagger.tag(wordtab, text, wordseg, corpus, limitWordLv, topn)
         output=ret
         return json.dumps(output, ensure_ascii=False).encode("UTF-8")
 
