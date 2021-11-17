@@ -40,7 +40,7 @@ def judge_word_level(word):
     if word_level_lst == "此詞語不存在於分級表":
         return float("inf")
     else:
-        return word_level_lst[0][0]
+        return float(word_level_lst[0][0])
 
 
 def stringfy_word_level(word):

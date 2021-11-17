@@ -55,3 +55,15 @@ table.word{
 .panel-default {
     border-color: #ddd;
 }
+
+.word-select {
+	appearance: none;
+	padding: 5px;
+	background-color:rgba(241, 252, 242, 0.89);
+	border: none;
+	font-family: inherit;
+	outline: none;
+    text-align: center;
+    width: 135px;
+    display: inline-block;
+}

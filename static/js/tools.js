@@ -75,6 +75,7 @@ function request_sentedit()
 			drawChart(arr);
 			$('#sentedit_tag').html(response.output);
 			$('#sentedit_word_list').html(response.word_list);
+			$('#formSelectDiv').html(response.word_sim);
 		}
 	};
 	$.ajax(obj);

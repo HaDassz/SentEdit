@@ -86,12 +86,13 @@ class WordLevelTagger:
         # print json.dumps(sentL,ensure_ascii=False,indent=4).encode("UTF-8")
 
         out_text = [table_info]
+        word_sim_out_lst = []
         for wordL in sentL:
             # wordL=re.split('[ \t]+',sent)
             outL = []
-            print("wordL：", wordL)
+            similar_lst = []
+            word_sim = []
             for word in wordL:
-                print("word:", word)
                 # 分級標記
                 word_listT[word] += 1
                 if word in T:
@@ -123,11 +124,39 @@ class WordLevelTagger:
                             </table>""" % (word)
                     level_stats['X'] += 1  # 以最低的級去計算
                 outL.append(out)
-                #TODO: 110/11/16中午至此，續寫關聯詞邏輯部分
+
                 #* 語義場關聯詞
-                
+                similar_lst.append(find_most_n_similar(
+                    word, embed_model, topn=topn, limit_word_level=float(limitWordLv)))
 
+            for word, sim in zip(wordL, similar_lst):
+                word_sim_dict = {}
+                word_sim_dict['word'] = stringfy_word_level(word) + ' ' + word
+                word_sim_dict['sim'] = sim.split('\n')
+                word_sim.append(word_sim_dict)
 
+            #TODO: 110/11/16 至此，接著寫html字串
+            word_sim_out = u""""""
+            for idx, ws in enumerate(word_sim):
+                word_sim_out += u'<table class="word">\n'
+                word_sim_out += u'<tr>\n'
+                word_sim_out += u'<td>\n'
+                word_sim_out += f'<select id="form-select-{idx}" class="word-select">\n'
+                word_sim_out += f'<option selected class="selectedOpt">{ws["word"]}</option>\n'
+                for i, sword_similarity in enumerate(ws["sim"]):
+                    word_sim_out += f'<option value="{sword_similarity}" id="opt{i}">{sword_similarity}</option>\n'
+                word_sim_out += '</select>\n'
+                word_sim_out += '</td>\n'
+                word_sim_out += '</tr>\n'
+                word_sim_out += '<tr>\n'
+                word_sim_out += '<td class="" title="" id="markLevel-{idx}"></td>\n'
+                word_sim_out += '</tr>\n'
+                word_sim_out += '<tr>\n'
+                word_sim_out += '<td id="level-num-{idx}"></td>\n'
+                word_sim_out += '</tr>\n'
+                word_sim_out += '</table>\n'
+
+            word_sim_out_lst.append(word_sim_out)
             out_text.append(u"&nbsp;&nbsp;".join(outL))
             # out_text.append(string.join(outL, u"&nbsp;&nbsp;"))
         # 詞表
@@ -172,7 +201,8 @@ class WordLevelTagger:
             # 'output': string.join(out_text, u"<br>"),
             'output': u"<br>".join(out_text),
             'word_list': word_list_out,
-            'stats': level_stats
+            'stats': level_stats,
+            'word_sim': u"<br>".join(word_sim_out_lst)
         }
         return output
 
