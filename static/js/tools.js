@@ -32,7 +32,7 @@ function trim_and_split(str)
 function collect_sentedit()
 {
 	var data={}
-	data.text=$('#sentedit_input').val();
+	data.text=$('#sentedit_input').text();
 	data.wordseg=$("#wordseg").prop("checked");
 	data.wordtab=$('input[name=wordtab]:checked').val();
     data.corpus=$('input[name=corpus]:checked').val();
