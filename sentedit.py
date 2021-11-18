@@ -8,7 +8,7 @@ import re
 from Segmentor import *
 from collections import OrderedDict, defaultdict
 import gensim
-from word_embed import select_model, find_most_n_similar, judge_word_level, stringfy_word_level
+from word_embed import select_model, find_most_n_similar, judgeWordLevel_to_dict, stringfy_word_level
 
 config_path = os.path.abspath(os.path.dirname(__file__))
 
@@ -86,7 +86,7 @@ class WordLevelTagger:
         # print json.dumps(sentL,ensure_ascii=False,indent=4).encode("UTF-8")
 
         out_text = [table_info]
-        word_sim_out_lst = []
+        word_sim_out_lst = [table_info]
         for wordL in sentL:
             # wordL=re.split('[ \t]+',sent)
             outL = []
@@ -131,6 +131,7 @@ class WordLevelTagger:
 
             for word, sim in zip(wordL, similar_lst):
                 word_sim_dict = {}
+                word_sim_dict['pure_word'] = word
                 word_sim_dict['word'] = stringfy_word_level(word) + ' ' + word
                 word_sim_dict['sim'] = sim.split('\n')
                 word_sim.append(word_sim_dict)
@@ -138,10 +139,11 @@ class WordLevelTagger:
             #TODO: 110/11/16 至此，接著寫html字串
             word_sim_out = u""""""
             for idx, ws in enumerate(word_sim):
+                word = ws['pure_word']
                 word_sim_out += u'<table class="word">\n'
                 word_sim_out += u'<tr>\n'
                 word_sim_out += u'<td>\n'
-                word_sim_out += f'<select id="form-select-{idx}" class="word-select">\n'
+                word_sim_out += f'<select id="form-select-{idx+1}" class="word-select" title="{judgeWordLevel_to_dict(word)["title"]}">\n'
                 word_sim_out += f'<option selected class="selectedOpt">{ws["word"]}</option>\n'
                 for i, sword_similarity in enumerate(ws["sim"]):
                     word_sim_out += f'<option value="{sword_similarity}" id="opt{i}">{sword_similarity}</option>\n'
@@ -149,10 +151,10 @@ class WordLevelTagger:
                 word_sim_out += '</td>\n'
                 word_sim_out += '</tr>\n'
                 word_sim_out += '<tr>\n'
-                word_sim_out += '<td class="" title="" id="markLevel-{idx}"></td>\n'
+                word_sim_out += f'<td class="{judgeWordLevel_to_dict(word)["className"]}" title="{judgeWordLevel_to_dict(word)["title"]}" id="markLevel-{idx+1}"></td>\n'
                 word_sim_out += '</tr>\n'
                 word_sim_out += '<tr>\n'
-                word_sim_out += '<td id="level-num-{idx}"></td>\n'
+                word_sim_out += f'<td id="level-num-{idx+1}">{judgeWordLevel_to_dict(word)["levelNum"]}</td>\n'
                 word_sim_out += '</tr>\n'
                 word_sim_out += '</table>\n'
 

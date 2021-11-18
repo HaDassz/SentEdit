@@ -41,7 +41,6 @@ function collect_sentedit()
     return data;
 }
 
-
 function request_sentedit()
 {
 	$('#sentedit_tag').val('');
@@ -79,7 +78,11 @@ function request_sentedit()
 		}
 	};
 	$.ajax(obj);
-
 }
+
+/* ajaxComplete */
+// $(document).ajaxComplete(
+//     initformSelectDiv()
+// )
 
 

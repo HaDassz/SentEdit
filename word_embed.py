@@ -65,6 +65,33 @@ def find_most_n_similar(w1, model, topn=10, limit_word_level=float("inf")):
     else:
         return stringfy_word_level(w1) + ' ' + w1
 
+def judgeWordLevel_to_dict(word):
+    word_level_lst = level_data.get(word, "此詞語不存在於分級表")
+    if word_level_lst == "此詞語不存在於分級表":
+        return {
+      "className": "level_X",
+      "title": "未收錄",
+      "levelNum": "X"
+    }
+    else:
+        level_lst = level_data[word]
+        title_str_lst = []
+        level_num_lst = []
+        for arr in level_lst:
+            title_str_lst.append(arr[0] + "," + arr[1])
+            level_num_lst.append(arr[0])
+        return {
+            "className": "level_" + level_lst[0][0],
+            "title": "； ".join(title_str_lst),
+            "levelNum": ",".join(level_num_lst)
+        }
+
+
+
+
+
+
+
 def segStr_with_naerSeg(sentence):
     """傳POST請求到國教院分詞系統再取得分詞後字串
 

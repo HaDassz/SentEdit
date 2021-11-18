@@ -53,7 +53,7 @@
 
     <div class="panel-heading">
       <label for="topn"><h6>關聯詞最大輸出詞數：</h6></label>
-      <input type="text" size="4" id="topn" name="topn">
+      <input type="text" size="4" id="topn" value="10" name="topn">
     </div>
   
   </div>
@@ -86,9 +86,12 @@
 
         <!--input id="wordtab1" type="radio" name="wordtab" value="hw8000"-->
         <!--label for="wordseg">華語八千詞</label-->
-        <textarea class="form-control" id='sentedit_input' rows="22" style="width:100%" placeholder="請輸入句子，例如：
-下課以後，我們一起去吃飯。">下課以後，我們一起去吃飯</textarea><br>
-        <input type='button' value='送出' onClick='request_sentedit()'>
+        <div contenteditable="true" class="form-control" id='sentedit_input' rows="22" style="height: 500px;;" placeholder="請輸入句子，例如：
+下課以後，我們一起去吃飯。">下課以後，我們一起去吃飯</div><br>
+        <!-- <input type='button' value='送出' onClick='request_sentedit()'> -->
+        <button type='submit' class="btn btn-primary" onclick="request_sentedit()">送出</button>
+        <button id="copyBtn" type="button" class="btn btn-success">複製</button>
+        <button type="reset" id="resetTextarea" class="btn btn-danger" title="清空查詢區">清空</button>
       </div>
     </div>
     <!-- end card -->
