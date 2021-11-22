@@ -2,7 +2,7 @@ import levelData from './NaerWordLevel.js'
 
 //const {selectorCnt} = require('./tools.js')
 let formSelectDiv = document.getElementById("formSelectDiv")
-let selectorCnt = formSelectDiv.childElementCount 
+// let selectorCnt = formSelectDiv.childElementCount 
 let senteditInput = document.getElementById("sentedit_input")
 const biaoYin = document.querySelectorAll('input[name="biaoYin"]')
 const resetBtn = document.getElementById('resetTextarea')
@@ -13,27 +13,27 @@ const resetSelectorBtn = document.getElementById('resetSelectorBtn')
 // console.log("詞語數量：", selectorCnt)
 
 // 初始化展示原本句子，以及呈現各詞語的等級
-function initformSelectDiv(){
-  for (let i = 1; i <= document.getElementById("formSelectDiv").childElementCount-4; i++) {
-  // let selectedOpt = document.getElementById(`form-select-${i}`).querySelector(".selectedOpt")
-  let markLevel = document.getElementById(`markLevel-${i}`)
-  let formSelect = document.getElementById(`form-select-${i}`)
-  let levelNum = document.getElementById(`level-num-${i}`)
+// function initformSelectDiv(){
+//   for (let i = 1; i <= document.getElementById("formSelectDiv").childElementCount-4; i++) {
+//   // let selectedOpt = document.getElementById(`form-select-${i}`).querySelector(".selectedOpt")
+//   let markLevel = document.getElementById(`markLevel-${i}`)
+//   let formSelect = document.getElementById(`form-select-${i}`)
+//   let levelNum = document.getElementById(`level-num-${i}`)
 
-  // 填入文字修改區初始字串
-  // let word = selectedOpt.textContent.split(" ")[1]
-  // defaultDisplayStr += word
-  markLevel.setAttribute('class', judgeWordLevel(word)["className"])
-  markLevel.title = judgeWordLevel(word)["title"]
-  formSelect.title = judgeWordLevel(word)["title"]
-  levelNum.innerHTML = `${judgeWordLevel(word)["levelNum"]}<br>`
-  // arr.push(formSelect.options[formSelect.selectedIndex].text);
-  }
-}
+//   // 填入文字修改區初始字串
+//   // let word = selectedOpt.textContent.split(" ")[1]
+//   // defaultDisplayStr += word
+//   markLevel.setAttribute('class', judgeWordLevel(word)["className"])
+//   markLevel.title = judgeWordLevel(word)["title"]
+//   formSelect.title = judgeWordLevel(word)["title"]
+//   levelNum.innerHTML = `${judgeWordLevel(word)["levelNum"]}<br>`
+//   // arr.push(formSelect.options[formSelect.selectedIndex].text);
+//   }
+// }
 
-if (selectorCnt !== 0){
-  initformSelectDiv()
-}
+// if (selectorCnt !== 0){
+//   initformSelectDiv()
+// }
 
 
 // floatingTextarea.textContent = defaultDisplayStr
@@ -72,9 +72,6 @@ function changeArea(e) {
       }
 
     }
-
-    // console.log("事件目標值：", e.target.value)
-    // console.log("選項陣列值：", arr.join(""))
     senteditInput.innerHTML = `${arr.join("")}`
   }
 }
@@ -143,9 +140,23 @@ copyBtn.addEventListener('click', function () {
   }
 })
 
+resetSelectorBtn.addEventListener('click', function () {
+    let arr = []
+    for (let i = 1; i <= document.getElementById("formSelectDiv").childElementCount-4; i++) {
+      let formSelect = document.getElementById(`form-select-${i}`)
+      let options = formSelect.options
+      // 可以應用在重置替換後文句
+      arr.push(options[0].text.split(" ")[1])
+      for (let j = 0; j < options.length; j++) {
+        options[j].selected = options[j].defaultSelected
+      }
+    }
+    senteditInput.innerText = `${arr.join("")}`
+})
+
 // *擷圖1個區塊的功能
 scrShotBtn.addEventListener('click', function () {
-  html2canvas(floatingTextarea).then(function (canvas) {
+  html2canvas(senteditInput).then(function (canvas) {
     document.body.appendChild(canvas);
     var a = document.createElement('a');
     a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
@@ -155,34 +166,20 @@ scrShotBtn.addEventListener('click', function () {
   })
 })
 
-resetSelectorBtn.addEventListener('click', function () {
-  let arr = []
-  for (let i = 1; i <= selectorCnt; i++) {
-    let formSelect = document.getElementById(`form-select-${i}`)
-    let options = formSelect.options
-    // 可以應用在重置替換後文句
-    arr.push(options[0].text.split(" ")[1])
-    for (let j = 0; j < options.length; j++) {
-      options[j].selected = options[j].defaultSelected
-    }
-  }
-  floatingTextarea.textContent = `${arr.join("")}`
-})
-
 
 
 // 取得回到頂部按鈕
 let btnBackToTop = document.getElementById("btn-back-to-top");
 
-// 當使用者下從頂端向下捲至20px時，顯示按鈕
+// 當使用者下從頂端向下捲至50px時，顯示按鈕
 window.onscroll = function () {
   scrollFunction();
 };
 
 function scrollFunction() {
   if (
-    document.body.scrollTop > 20 ||
-    document.documentElement.scrollTop > 20
+    document.body.scrollTop > 50 ||
+    document.documentElement.scrollTop > 50
   ) {
     btnBackToTop.style.display = "block";
   } else {
@@ -193,6 +190,7 @@ function scrollFunction() {
 btnBackToTop.addEventListener("click", backToTop);
 
 function backToTop() {
+  console.log(btnBackToTop.value);
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
 }
