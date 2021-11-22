@@ -44,7 +44,7 @@ table.word{
 }
 
 #sentedit_input{
-	font-size: 16px;
+	font-size: x-large;
 }
 
 .panel-default>.panel-heading {
@@ -65,7 +65,7 @@ table.word{
 	font-family: inherit;
 	outline: none;
     text-align: center;
-    width: 135px;
+    width: 130px;
     display: inline-block;
 }
 

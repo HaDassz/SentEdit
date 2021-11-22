@@ -171,15 +171,15 @@ scrShotBtn.addEventListener('click', function () {
 // 取得回到頂部按鈕
 let btnBackToTop = document.getElementById("btn-back-to-top");
 
-// 當使用者下從頂端向下捲至50px時，顯示按鈕
+// 當使用者下從頂端向下捲至20px時，顯示按鈕
 window.onscroll = function () {
   scrollFunction();
 };
 
 function scrollFunction() {
   if (
-    document.body.scrollTop > 50 ||
-    document.documentElement.scrollTop > 50
+    document.body.scrollTop > 20 ||
+    document.documentElement.scrollTop > 20
   ) {
     btnBackToTop.style.display = "block";
   } else {
