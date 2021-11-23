@@ -108,7 +108,7 @@ class WordLevelTagger:
                             <tr><td>%s</td></tr>
                             <tr><td class="level_%s"></td></tr>
                             <tr><td>%s</td></tr>
-                            </table>""" % (",".join(titleL), word, levelL[0], ",".join(titleL))
+                            </table>""" % (",".join(titleL), word, levelL[0], ",".join(levelL)) # % (",".join(titleL), word, levelL[0], ",".join(titleL))
                             # % (string.join(titleL, ","), word, levelL[0], string.join(levelL, ","))  # 2.7版
                 elif not re.match(u'[\u4E00-\u9fa5]+', word):
                     out = u"""<table class="word" title="無分級">
@@ -160,7 +160,6 @@ class WordLevelTagger:
 
             word_sim_out_lst.append(word_sim_out)
             out_text.append(u"&nbsp;&nbsp;".join(outL))
-            # out_text.append(string.join(outL, u"&nbsp;&nbsp;"))
         # 詞表
         word_list = list(word_listT.items())
         word_list.sort(key=lambda x: x[1], reverse=True)
@@ -200,7 +199,6 @@ class WordLevelTagger:
 </table>"""
 
         output = {
-            # 'output': string.join(out_text, u"<br>"),
             'output': u"<br>".join(out_text),
             'word_list': word_list_out,
             'stats': level_stats,
