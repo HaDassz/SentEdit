@@ -60,7 +60,7 @@ function changeArea(e) {
 
     //! 這邊要再修改(110/10/18應該完成了,變色高亮功能完成)
     for (let i = 1; i <= document.getElementById("formSelectDiv").childElementCount-4; i++) {
-      console.log(document.getElementById("formSelectDiv").childElementCount);
+      console.log(document.getElementById("formSelectDiv").childElementCount-4);
       let formSelect = document.getElementById(`form-select-${i}`);
       let selectedString = formSelect.options[formSelect.selectedIndex].text
       //  console.log(formSelect.options[0].text)  // 可以應用在重置替換後文句
