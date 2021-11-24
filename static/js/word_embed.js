@@ -9,35 +9,6 @@ const resetBtn = document.getElementById('resetTextarea')
 const copyBtn = document.getElementById('copyBtn')
 const scrShotBtn = document.getElementById('scrShotBtn')
 const resetSelectorBtn = document.getElementById('resetSelectorBtn')
-// let defaultDisplayStr = ""
-// console.log("詞語數量：", selectorCnt)
-
-// 初始化展示原本句子，以及呈現各詞語的等級
-// function initformSelectDiv(){
-//   for (let i = 1; i <= document.getElementById("formSelectDiv").childElementCount-4; i++) {
-//   // let selectedOpt = document.getElementById(`form-select-${i}`).querySelector(".selectedOpt")
-//   let markLevel = document.getElementById(`markLevel-${i}`)
-//   let formSelect = document.getElementById(`form-select-${i}`)
-//   let levelNum = document.getElementById(`level-num-${i}`)
-
-//   // 填入文字修改區初始字串
-//   // let word = selectedOpt.textContent.split(" ")[1]
-//   // defaultDisplayStr += word
-//   markLevel.setAttribute('class', judgeWordLevel(word)["className"])
-//   markLevel.title = judgeWordLevel(word)["title"]
-//   formSelect.title = judgeWordLevel(word)["title"]
-//   levelNum.innerHTML = `${judgeWordLevel(word)["levelNum"]}<br>`
-//   // arr.push(formSelect.options[formSelect.selectedIndex].text);
-//   }
-// }
-
-// if (selectorCnt !== 0){
-//   initformSelectDiv()
-// }
-
-
-// floatingTextarea.textContent = defaultDisplayStr
-
 
 formSelectDiv.addEventListener('change', changeArea)
 
@@ -162,7 +133,8 @@ scrShotBtn.addEventListener('click', function () {
     a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
     a.download = '文句擷圖.jpg';
     a.click();
-    document.querySelector('canvas').style.display = "none"
+    document.body.removeChild(canvas)
+    // document.querySelector('canvas').style.display = "none"
   })
 })
 
