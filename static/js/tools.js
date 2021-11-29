@@ -53,6 +53,12 @@ function request_sentedit()
 	var data_str=JSON.stringify(data);
 	var obj={
 		contentType:"application/json",
+        beforeSend: function(){
+            showDiv();
+        },
+        complete: function(){
+            hiddenDiv();
+        },
 		type: "POST",
 		url: "/sentedit2/",
 		dataType: 'json',
@@ -80,6 +86,13 @@ function request_sentedit()
 	$.ajax(obj);
 }
 
+function showDiv(){
+    $('#loading').show();
+}
+
+function hiddenDiv(){
+    $('#loading').hide();
+}
 /* ajaxComplete */
 // $(document).ajaxComplete(
 //     initformSelectDiv()
