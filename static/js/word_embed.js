@@ -9,6 +9,7 @@ const resetBtn = document.getElementById('resetTextarea')
 const copyBtn = document.getElementById('copyBtn')
 const scrShotBtn = document.getElementById('scrShotBtn')
 const resetSelectorBtn = document.getElementById('resetSelectorBtn')
+const sentEditBtn = document.getElementById('sentEditBtn')
 
 formSelectDiv.addEventListener('change', changeArea)
 
@@ -44,6 +45,8 @@ function changeArea(e) {
 
     }
     senteditInput.innerHTML = `${arr.join("")}`
+    sentEditBtn.click()
+
   }
 }
 
