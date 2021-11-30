@@ -23,7 +23,7 @@
 
     <!-- 等級限制選擇card -->
     <div class="card mb-4 shadow-sm">
-      <div class="card-header">替換詞語等級限制</div>
+      <div class="card-header">關聯替換詞語等級限制</div>
       <div class="card-body">
         <input type="radio" name="limit-word-level" id="word-level-inf" value="inf" required checked="checked" />
         <label for="word-level-inf">不限制</label>
@@ -62,7 +62,7 @@
   <div class="col-md-5">
     <!-- start card -->
     <div class="card mb-4 shadow-sm">
-      <div class="card-header">例句編輯工具</div>
+      <div class="card-header">例句編輯工具編輯區</div>
       <div class="card-body">
         <input id="wordseg" type="checkbox" name="wordseg" value="true" checked="checked">
         <label for="wordseg">自動斷詞</label>
@@ -78,16 +78,15 @@
               <input type="radio" name="biaoYin" id="biaoYinNo" value="No" required checked="checked" />
               <label for="biaoYinNo">不標音</label>
               <input type="radio" name="biaoYin" id="biaoZhuYin" value="ZhuYin" required />
-              <label for="biaoZhuYin">標注音</label>
+              <label for="biaoZhuYin">標注音字體</label>
               <input type="radio" name="biaoYin" id="biaoPinYin" value="PinYin" required />
-              <label for="biaoPinYin">標漢語拼音</label>
+              <label for="biaoPinYin">標漢語拼音字體</label>
             </div>
         </div>
 
         <!--input id="wordtab1" type="radio" name="wordtab" value="hw8000"-->
         <!--label for="wordseg">華語八千詞</label-->
-        <div contenteditable="true" class="form-control" id='sentedit_input' rows="22" placeholder="請輸入句子，例如：
-下課以後，我們一起去吃飯。">好朋友買了好幾件衣料，綠色的底子帶粉紅色圓圈，當她拿給我們看時，一位對圍棋十分感興趣的同學指出：「啊，好像棋盤似的。」「我看倒有點像稿紙。」我說。「真像一塊塊綠豆糕。」一位外號叫「大食客」的同學緊接著說。</div><br>
+        <div contenteditable="true" class="form-control" id='sentedit_input' rows="22" placeholder="請輸入句子，例如：下課以後，我們一起去吃飯。">好朋友買了好幾件衣料，綠色的底子帶粉紅色圓圈，當她拿給我們看時，一位對圍棋十分感興趣的同學指出：「啊，好像棋盤似的。」「我看倒有點像稿紙。」我說。「真像一塊塊綠豆糕。」一位外號叫「大食客」的同學緊接著說。</div><br>
         <div id="loading">載入資料中，請稍候...</div>
         <h2>標音遇到<span class="text text-danger">破音字</span>怎麼辦?</h2>
         <h5>可將文本複製貼到下列ToneOZ網站，會自動選音以及提供選擇器，感謝ToneOZ</h5>
@@ -97,7 +96,7 @@
         <button id="copyBtn" type="button" class="btn btn-success">複製</button>
         <button id="scrShotBtn" type="button" class="btn btn-secondary" style="width:fit-content;" title="擷圖查詢區內容並下載">擷圖</button>
         <button type="reset" id="resetTextarea" class="btn btn-danger" title="清空查詢區">清空</button>
-        <button id="resetSelectorBtn" type="button" class="btn btn-warning" style="width:fit-content;" title="重置下拉選單選項及重置查詢區">重置</button>
+        <!-- <button id="resetSelectorBtn" type="button" class="btn btn-warning" style="width:fit-content;" title="重置下拉選單選項及重置查詢區">重置</button> -->
       </div>
     </div>
     <!-- end card -->
