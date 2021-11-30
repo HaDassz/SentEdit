@@ -1,6 +1,5 @@
 import levelData from './NaerWordLevel.js'
 
-//const {selectorCnt} = require('./tools.js')
 let formSelectDiv = document.getElementById("formSelectDiv")
 // let selectorCnt = formSelectDiv.childElementCount 
 let senteditInput = document.getElementById("sentedit_input")
@@ -45,8 +44,7 @@ function changeArea(e) {
 
     }
     senteditInput.innerHTML = `${arr.join("")}`
-    sentEditBtn.click()
-
+    // sentEditBtn.click()
   }
 }
 
