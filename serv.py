@@ -5,7 +5,7 @@ import re, json
 import time
 from time import gmtime, strftime
 import sys, os
-from flask import Flask,url_for,render_template, request, send_from_directory
+from flask import Flask,url_for,render_template, request
 from sentedit import WordLevelTagger
 
 app = Flask(__name__, static_url_path='/sentedit2')

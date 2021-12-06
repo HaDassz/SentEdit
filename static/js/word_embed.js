@@ -8,7 +8,7 @@ const resetBtn = document.getElementById('resetTextarea')
 const copyBtn = document.getElementById('copyBtn')
 const scrShotBtn = document.getElementById('scrShotBtn')
 const resetSelectorBtn = document.getElementById('resetSelectorBtn')
-const sentEditBtn = document.getElementById('sentEditBtn')
+// const sentEditBtn = document.getElementById('sentEditBtn')
 
 formSelectDiv.addEventListener('change', changeArea)
 
@@ -114,16 +114,22 @@ copyBtn.addEventListener('click', function () {
 
 resetSelectorBtn.addEventListener('click', function () {
     let arr = []
-    for (let i = 1; i <= document.getElementById("formSelectDiv").childElementCount-4; i++) {
+    if (document.getElementById("formSelectDiv").childElementCount-4 >= 1){
+      for (let i = 1; i <= document.getElementById("formSelectDiv").childElementCount-4; i++) {
       let formSelect = document.getElementById(`form-select-${i}`)
       let options = formSelect.options
       // 可以應用在重置替換後文句
       arr.push(options[0].text.split(" ")[1])
       for (let j = 0; j < options.length; j++) {
-        options[j].selected = options[j].defaultSelected
+          options[j].selected = options[j].defaultSelected
       }
+      }
+      senteditInput.innerText = `${arr.join("")}`
     }
-    senteditInput.innerText = `${arr.join("")}`
+    else{
+      senteditInput.innerText = ""
+    }
+    
 })
 
 // *擷圖1個區塊的功能
