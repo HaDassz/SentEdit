@@ -136,7 +136,6 @@ class WordLevelTagger:
                 word_sim_dict['sim'] = sim.split('\n')
                 word_sim.append(word_sim_dict)
 
-            #TODO: 110/11/16 至此，接著寫html字串
             word_sim_out = u""""""
             for idx, ws in enumerate(word_sim):
                 word = ws['pure_word']
