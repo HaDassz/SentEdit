@@ -124,11 +124,11 @@ class WordLevelTagger:
                             </table>""" % (word)
                     level_stats['X'] += 1  # 以最低的級去計算
                 outL.append(out)
-
+        
                 #* 語義場關聯詞
                 similar_lst.append(find_most_n_similar(
                     word, embed_model, topn=topn, limit_word_level=float(limitWordLv)))
-
+        
             for word, sim in zip(wordL, similar_lst):
                 word_sim_dict = {}
                 word_sim_dict['pure_word'] = word
@@ -157,8 +157,8 @@ class WordLevelTagger:
                 word_sim_out += '</tr>\n'
                 word_sim_out += '</table>\n'
 
-            word_sim_out_lst.append(word_sim_out)
             out_text.append(u"&nbsp;&nbsp;".join(outL))
+            word_sim_out_lst.append(word_sim_out)
         # 詞表
         word_list = list(word_listT.items())
         word_list.sort(key=lambda x: x[1], reverse=True)

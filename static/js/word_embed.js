@@ -3,10 +3,16 @@ import levelData from './NaerWordLevel.js'
 let formSelectDiv = document.getElementById("formSelectDiv")
 // let selectorCnt = formSelectDiv.childElementCount 
 let senteditInput = document.getElementById("sentedit_input")
+let p1 = document.getElementById("p1")
+let p2 = document.getElementById("p2")
+let p3 = document.getElementById("p3")
 const biaoYin = document.querySelectorAll('input[name="biaoYin"]')
 const resetBtn = document.getElementById('resetTextarea')
 const copyBtn = document.getElementById('copyBtn')
 const scrShotBtn = document.getElementById('scrShotBtn')
+const scrShotBtn2 = document.getElementById('scrShotBtn2')
+const scrShotBtn3 = document.getElementById('scrShotBtn3')
+const scrShotBtn4 = document.getElementById('scrShotBtn4')
 const resetSelectorBtn = document.getElementById('resetSelectorBtn')
 // const sentEditBtn = document.getElementById('sentEditBtn')
 
@@ -15,6 +21,7 @@ formSelectDiv.addEventListener('change', changeArea)
 // change事件觸發：覆寫展示句子的函式、更改詞語等級顯示
 function changeArea(e) {
   if (e.target.tagName.toLowerCase() === 'select') {
+    console.log(document.getElementById("formSelectDiv").childElementCount-4);
     // 用陣列儲存當前網頁select元件的展示value
     let arr = []
     // let changeTarget = document.getElementById(e.target.id)
@@ -29,9 +36,7 @@ function changeArea(e) {
     changeFormSelect.title = judgeWordLevel(word)["title"]
     changeLevelNum.textContent = judgeWordLevel(word)["levelNum"]
 
-    //! 這邊要再修改(110/10/18應該完成了,變色高亮功能完成)
     for (let i = 1; i <= document.getElementById("formSelectDiv").childElementCount-4; i++) {
-      console.log(document.getElementById("formSelectDiv").childElementCount-4);
       let formSelect = document.getElementById(`form-select-${i}`);
       let selectedString = formSelect.options[formSelect.selectedIndex].text
       //  console.log(formSelect.options[0].text)  // 可以應用在重置替換後文句
@@ -132,8 +137,9 @@ resetSelectorBtn.addEventListener('click', function () {
     
 })
 
-// *擷圖1個區塊的功能
+// *擷圖1個區塊的功能-編輯區
 scrShotBtn.addEventListener('click', function () {
+  senteditInput.style.borderColor = 'white'
   html2canvas(senteditInput).then(function (canvas) {
     document.body.appendChild(canvas);
     var a = document.createElement('a');
@@ -143,6 +149,49 @@ scrShotBtn.addEventListener('click', function () {
     document.body.removeChild(canvas)
     // document.querySelector('canvas').style.display = "none"
   })
+  senteditInput.style.borderColor = '#ced4da'
+})
+
+// *擷圖1個區塊的功能-分級標記
+scrShotBtn2.addEventListener('click', function () {
+  this.style.display = 'none';
+  html2canvas(p1).then(function (canvas) {
+    document.body.appendChild(canvas);
+    var a2 = document.createElement('a');
+    a2.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+    a2.download = '分級標記擷圖.jpg';
+    a2.click();
+    document.body.removeChild(canvas)
+  })
+  this.style.display = 'block';
+})
+
+// *擷圖1個區塊的功能-詞彙等級分布圓餅圖
+scrShotBtn3.addEventListener('click', function () {
+  this.style.display = 'none';
+  html2canvas(p2).then(function (canvas) {
+    document.body.appendChild(canvas);
+    var a3 = document.createElement('a');
+    a3.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+    a3.download = '圓餅圖擷圖.jpg';
+    a3.click();
+    document.body.removeChild(canvas)
+  })
+  this.style.display = 'block';
+})
+
+// *擷圖1個區塊的功能-詞表
+scrShotBtn4.addEventListener('click', function () {
+  this.style.display = 'none';
+  html2canvas(p3).then(function (canvas) {
+    document.body.appendChild(canvas);
+    var a4 = document.createElement('a');
+    a4.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+    a4.download = '詞表擷圖.jpg';
+    a4.click();
+    document.body.removeChild(canvas)
+  })
+  this.style.display = 'block';
 })
 
 

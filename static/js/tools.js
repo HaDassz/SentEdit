@@ -58,6 +58,7 @@ function request_sentedit()
         },
         complete: function(){
             hiddenDiv();
+            showBtn();
         },
 		type: "POST",
 		url: "/sentedit2/",
@@ -93,6 +94,13 @@ function showDiv(){
 function hiddenDiv(){
     $('#loading').hide();
 }
+
+function showBtn(){
+    $('#scrShotBtn2').css('display', 'block');
+    $('#scrShotBtn3').css('display', 'block');
+    $('#scrShotBtn4').css('display', 'block');
+}
+
 /* ajaxComplete */
 // $(document).ajaxComplete(
 //     initformSelectDiv()
