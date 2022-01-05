@@ -100,10 +100,3 @@ function showBtn(){
     $('#scrShotBtn3').css('display', 'block');
     $('#scrShotBtn4').css('display', 'block');
 }
-
-/* ajaxComplete */
-// $(document).ajaxComplete(
-//     initformSelectDiv()
-// )
-
-

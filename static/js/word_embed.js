@@ -20,9 +20,9 @@ formSelectDiv.addEventListener('change', changeArea)
 function changeArea(e) {
   if (e.target.tagName.toLowerCase() === 'select') {
     console.log(document.getElementById("formSelectDiv").childElementCount-4);
+
     // 用陣列儲存當前網頁select元件的展示value
     let arr = []
-    // let changeTarget = document.getElementById(e.target.id)
     let changeIdNumber = e.target.id.split('-')[2]
     let changeMarkLevel = document.getElementById(`markLevel-${changeIdNumber}`)
     let changeFormSelect = document.getElementById(`form-select-${changeIdNumber}`)
@@ -84,7 +84,6 @@ resetBtn.addEventListener('click', function () {
 })
 
 biaoYin.forEach((elem) =>{ elem.addEventListener('change', function(e){
-    // console.log(e.target.value)
     if (e.target.value === "No"){
         senteditInput.style.fontFamily = "Microsoft JhengHei, BiauKai, DFKai-sb, sans-serif"
         senteditInput.style.fontSize = "x-large"
@@ -111,7 +110,6 @@ copyBtn.addEventListener('click', function () {
   else {
     navigator.clipboard.writeText(senteditInput.textContent)
     alert("已複製替換後文句中的文字了!")
-    // console.log('新版', floatingTextarea.value)
   }
 })
 
