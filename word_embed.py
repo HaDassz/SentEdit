@@ -1,4 +1,16 @@
 # %%
+#!/usr/bin/env python
+# -*- encoding: utf-8 -*-
+'''
+@File    :   word_embed.py
+@Time    :   2022/01/05 15:21:09
+@Author  :   cwHsu 
+@Version :   1.0
+@Contact :   old90631@mail.naer.edu.tw
+@License :   None
+@Desc    :   運用詞嵌入(word embedding)技術找出語義場關聯詞，並根據詞表提供適當的資訊給前端處理。
+'''
+
 import os
 import re
 import gensim
@@ -11,10 +23,8 @@ CORPUS_NAME = {'YL_V1': '遠流語料', 'CP_V1': '中國時報', 'MDN': '國語�
 LIMIT_WORD_LEVEL = {float("inf"): "不限制", 1.0: "1級詞", 2.0: "2級詞以下", 3.0: "3級詞以下", 4.0: "4級詞以下", 5.0: "5級詞以下", 6.0: "6級詞以下",
                     7.0: "7級詞以下"}
 
-# PUNCTUATION = u"[\u0021-\u002F\u003A-\u0040\u005B-\u0060\u007B-\u007E，。；：！？（）＼｜【】]"
 config_path = os.path.abspath(os.path.dirname(__file__))
 patt = re.compile(NOT_PUNCTUATION)
-# patt_punct = re.compile(PUNCTUATION)
 
 with open(os.path.join(config_path, 'sentedit', '國教院詞語分級表.json'), encoding="utf-8") as fin:
     level_data = json.loads(fin.read())
@@ -31,7 +41,6 @@ def select_model(model_name='MDN'):
                  'SBCV1': 'SBCV1.bin', 'cna': 'cna_asbc_concat_vectors.bin'}
     embed_model = gensim.models.keyedvectors.KeyedVectors.load_word2vec_format(os.path.join(config_path, 'nlpmodels', model_map.get(model_name)),
                                                                                binary=True, encoding='utf8', unicode_errors='ignore')
-
     return embed_model
 
 
@@ -50,9 +59,6 @@ def stringfy_word_level(word):
     else:
         res = [str(lst[0]) for lst in word_level_lst]
         return ",".join(res)
-
-# TODO: 110/10/22 詢問說要不要判斷近義詞的級數，只供原詞語等級以下的詞語才能被選擇(完成)
-# TODO: 110/11/2 開始寫供使用者填顯示詞語的等級
 
 
 def find_most_n_similar(w1, model, topn=10, limit_word_level=float("inf")):

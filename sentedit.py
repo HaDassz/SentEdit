@@ -4,10 +4,8 @@
 import os
 import json
 import re
-# import string
 from Segmentor import *
 from collections import OrderedDict, defaultdict
-import gensim
 from word_embed import select_model, find_most_n_similar, judgeWordLevel_to_dict, stringfy_word_level
 
 config_path = os.path.abspath(os.path.dirname(__file__))
@@ -37,7 +35,6 @@ class WordLevelTagger:
                 'dict': json.load(open(v[1], encoding="utf-8")),
                 'level_info': v[2]
             }
-        # print json.dumps(self.WordTables, ensure_ascii=False).encode("UTF-8")
 
     def get_dicts(self):
         L = []
@@ -52,13 +49,11 @@ class WordLevelTagger:
         word_listT = defaultdict(int)
         embed_model = select_model(corpus)
         T = self.WordTables[table_id]['dict']
-        # print json.dumps(T,ensure_ascii=False,indent=4).encode("UTF-8")
+        # print(json.dumps(T,ensure_ascii=False,indent=4).encode("UTF-8"))
         if wordseg:
             sentL = []
             for sent in re.split('[\r\n]', text):
-                # wL = self.seg_by_naerSeg(sent)
                 wL = self.ws.segment(sent)
-                # print json.dumps(wL,ensure_ascii=False).encode("utf8")
                 wL1 = []
                 for w in wL:
                     L = re.findall(u'([。，；！？：「」]|[^。，；！？：「」]+)', w)
@@ -83,7 +78,6 @@ class WordLevelTagger:
             </div><br>
         """ % (table_name, "&nbsp;&nbsp;".join(L))
         #  % (table_name, string.join(L, "&nbsp;&nbsp;"))   # 2.7版寫法
-        # print json.dumps(sentL,ensure_ascii=False,indent=4).encode("UTF-8")
 
         out_text = [table_info]
         word_sim_out_lst = [table_info]
@@ -98,7 +92,7 @@ class WordLevelTagger:
                 if word in T:
                     levelL = []
                     titleL = []
-                    # print "DEBUG:word=%s"%(word.encode("UTF-8"))
+                    # print("DEBUG:word=%s"%(word.encode("UTF-8")))
                     for item in T[word]:
                         # print "DEBUG1:item=%s"%(item)
                         levelL.append("%s" % (item[0]))
@@ -108,8 +102,8 @@ class WordLevelTagger:
                             <tr><td>%s</td></tr>
                             <tr><td class="level_%s"></td></tr>
                             <tr><td>%s</td></tr>
-                            </table>""" % (",".join(titleL), word, levelL[0], ",".join(levelL)) # % (",".join(titleL), word, levelL[0], ",".join(titleL))
-                            # % (string.join(titleL, ","), word, levelL[0], string.join(levelL, ","))  # 2.7版
+                            </table>""" % (",".join(titleL), word, levelL[0], ",".join(levelL))
+                            
                 elif not re.match(u'[\u4E00-\u9fa5]+', word):
                     out = u"""<table class="word" title="無分級">
                             <tr><td>%s</td></tr>
@@ -125,7 +119,7 @@ class WordLevelTagger:
                     level_stats['X'] += 1  # 以最低的級去計算
                 outL.append(out)
         
-                #* 語義場關聯詞
+                # 語義場關聯詞
                 similar_lst.append(find_most_n_similar(
                     word, embed_model, topn=topn, limit_word_level=float(limitWordLv)))
         
