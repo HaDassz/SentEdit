@@ -1,7 +1,6 @@
 import levelData from './NaerWordLevel.js'
 
 let formSelectDiv = document.getElementById("formSelectDiv")
-// let selectorCnt = formSelectDiv.childElementCount 
 let senteditInput = document.getElementById("sentedit_input")
 let p1 = document.getElementById("p1")
 let p2 = document.getElementById("p2")
@@ -14,7 +13,6 @@ const scrShotBtn2 = document.getElementById('scrShotBtn2')
 const scrShotBtn3 = document.getElementById('scrShotBtn3')
 const scrShotBtn4 = document.getElementById('scrShotBtn4')
 const resetSelectorBtn = document.getElementById('resetSelectorBtn')
-// const sentEditBtn = document.getElementById('sentEditBtn')
 
 formSelectDiv.addEventListener('change', changeArea)
 
@@ -214,6 +212,7 @@ function scrollFunction() {
     btnBackToTop.style.display = "none";
   }
 }
+
 // 點擊按鈕，觸發回到頂部的事件
 btnBackToTop.addEventListener("click", backToTop);
 
