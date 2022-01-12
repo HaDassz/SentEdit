@@ -104,12 +104,12 @@ copyBtn.addEventListener('click', function () {
   // floatingTextarea.select
   if (!navigator.clipboard) {
     document.execCommand('copy')
-    alert("已複製替換後文句中的文字了!")
+    alert("已複製編輯區文句中的文字了!")
     // console.log('舊版')
   }
   else {
     navigator.clipboard.writeText(senteditInput.textContent)
-    alert("已複製替換後文句中的文字了!")
+    alert("已複製編輯區文句中的文字了!")
   }
 })
 

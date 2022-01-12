@@ -1,6 +1,5 @@
 #-*- coding: utf8 -*-
 
-from xlwt import Workbook
 import re, json
 import time
 from time import gmtime, strftime
